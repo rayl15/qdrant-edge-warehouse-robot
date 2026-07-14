@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mixed-bin"
+version = "0.1.0"
+description = "Offline visual search for apparel-picking robots: MobileCLIP2 + Qdrant multivector, in-process at the edge."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Tech but Simple" }]
+keywords = ["vector-search", "qdrant", "edge", "robotics", "mobileclip", "multivector", "clip"]
+
+# Core runtime. Deliberately light so the pipeline and tests run anywhere,
+# including CI, without pulling multi-hundred-MB model weights.
+dependencies = [
+    "qdrant-client>=1.12",
+    "numpy>=1.24",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+# The real on-device encoder. Heavy (torch + weights); install when you want
+# to embed actual images rather than run the deterministic fake embedder.
+clip = [
+    "open_clip_torch>=2.24",
+    "torch>=2.2",
+]
+# Optional garment detector. Swap the SimpleBinDetector for real bounding boxes.
+detect = [
+    "ultralytics>=8.2",
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+mixed-bin = "mixed_bin.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/rayl15/qdrant-edge-warehouse-robot"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

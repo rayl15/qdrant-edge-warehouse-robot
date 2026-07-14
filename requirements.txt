@@ -1,0 +1,9 @@
+# Core runtime (enough to run the pipeline with the fake embedder + tests).
+qdrant-client>=1.12
+numpy>=1.24
+pillow>=10.0
+
+# --- Optional, install when you want real embeddings / detection ---
+# open_clip_torch>=2.24   # MobileCLIP2 encoder
+# torch>=2.2              # backend for open_clip
+# ultralytics>=8.2        # YOLO garment detector

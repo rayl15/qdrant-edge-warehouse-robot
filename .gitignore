@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Test / tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local Qdrant on-disk shards / storage
+storage/
+*.qdrant/
+data/index/
+*.snapshot
+
+# Model weights & caches
+*.pt
+*.onnx
+.cache/
+~/.cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
