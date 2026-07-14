@@ -26,6 +26,7 @@ dependencies = [
 clip = [
     "open_clip_torch>=2.24",
     "torch>=2.2",
+    "transformers>=4.40",  # MobileCLIP2 tokenizer loads via HF AutoTokenizer
 ]
 # Optional garment detector. Swap the SimpleBinDetector for real bounding boxes.
 detect = [

@@ -1,6 +1,11 @@
 # data/
 
-Not committed with real imagery. Generate placeholders with:
+`catalog/` ships with a small **real** sample (9 products, several views each)
+from Amazon Berkeley Objects, CC BY 4.0. See `ATTRIBUTION.md`. Run it with
+`python scripts/demo_real.py` (needs the `clip` extra).
+
+To generate throwaway synthetic placeholders instead (e.g. for a quick
+FakeEmbedder run of the CLI):
 
 ```bash
 python scripts/make_synthetic_data.py

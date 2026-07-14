@@ -6,4 +6,5 @@ pillow>=10.0
 # --- Optional, install when you want real embeddings / detection ---
 # open_clip_torch>=2.24   # MobileCLIP2 encoder
 # torch>=2.2              # backend for open_clip
+# transformers>=4.40      # MobileCLIP2 tokenizer (HF AutoTokenizer)
 # ultralytics>=8.2        # YOLO garment detector

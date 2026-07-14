@@ -40,14 +40,36 @@ pytest                     # includes the multivector-vs-single-view test
 The demo runs on a deterministic `FakeEmbedder` so nothing is downloaded. The
 pipeline code is identical to the real path; only the embedder and detector swap.
 
-## Run it for real (MobileCLIP2)
+## Run it for real (MobileCLIP2 on real images)
+
+The repo ships a small sample catalog of real product photos under
+`data/catalog/` (9 items, several views each, from Amazon Berkeley Objects, CC
+BY 4.0, see `data/ATTRIBUTION.md`). `scripts/demo_real.py` indexes all views but
+one per item, then queries with the held-out view to show multivector retrieval
+identifies the product from a shot it never indexed:
 
 ```bash
-pip install -e '.[clip]'                # torch + open_clip; weights cache once
-python scripts/make_synthetic_data.py   # or drop in real product photos
-mixed-bin build --catalog data/catalog --real
-mixed-bin pick  --image  data/bins/tote_01.png --real
+pip install -e '.[clip]'          # torch + open_clip + transformers; weights cache once
+python scripts/demo_real.py
 ```
+
+Real output on the sample catalog (CPU laptop):
+
+```
+Encoder ready: 512-d on cpu
+Indexed 9 products as multivector points (25 catalog views).
+Held-out-view retrieval (query view was NOT in the index):
+  [ok ] ABO-001_amazon-merk-vinden-dames  -> ABO-001 (0.829)
+  ...
+Top-1 accuracy on held-out views: 9/9 = 100%
+Mean search time: 0.33 ms/query (in-process, exact).
+```
+
+Note on the sample data: ABO's permissively-licensed multi-view listings are
+footwear and accessories, so the sample is shoes, bags, hats, watches and
+sunglasses rather than garments. The pipeline is identical for apparel, only the
+reference photos differ. Drop your own product folders into `data/catalog/` to
+use it on garments.
 
 Default encoder is `MobileCLIP2-S0` (512-d, single-digit-ms image encode, the
 edge sweet spot). Override with `MIXED_BIN_MODEL`; step up to
