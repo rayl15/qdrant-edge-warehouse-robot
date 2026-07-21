@@ -18,7 +18,7 @@ from mixed_bin.catalog import build_records
 from mixed_bin.config import Settings
 from mixed_bin.detector import SimpleBinDetector
 from mixed_bin.embeddings import Embedder, FakeEmbedder, MobileClipEmbedder
-from mixed_bin.index import LocalQdrantIndex
+from mixed_bin.index import EdgeShardIndex
 from mixed_bin.search import MixedBinPicker
 
 
@@ -32,7 +32,7 @@ def _cmd_build(args: argparse.Namespace) -> int:
     settings = Settings.from_env()
     embedder = _make_embedder(args.real, settings)
     records = build_records(args.catalog, embedder)
-    index = LocalQdrantIndex(settings.shard_path, settings.collection, embedder.dim)
+    index = EdgeShardIndex(settings.shard_path, embedder.dim, settings.vector_name)
     index.build(records)
     print(f"Indexed {len(records)} SKUs ({embedder.dim}-d) into {settings.shard_path}")
     return 0
@@ -41,7 +41,7 @@ def _cmd_build(args: argparse.Namespace) -> int:
 def _cmd_pick(args: argparse.Namespace) -> int:
     settings = Settings.from_env()
     embedder = _make_embedder(args.real, settings)
-    index = LocalQdrantIndex(settings.shard_path, settings.collection, embedder.dim)
+    index = EdgeShardIndex(settings.shard_path, embedder.dim, settings.vector_name)
     picker = MixedBinPicker(SimpleBinDetector(), embedder, index, settings)
     with Image.open(args.image) as bin_image:
         targets = picker.plan_picks(bin_image.copy())

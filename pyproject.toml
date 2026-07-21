@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mixed-bin"
 version = "0.1.0"
-description = "Offline visual search for apparel-picking robots: MobileCLIP2 + Qdrant multivector, in-process at the edge."
+description = "Offline visual search for apparel-picking robots: MobileCLIP2 + Qdrant Edge multivector search, in-process on the robot."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -15,7 +15,7 @@ keywords = ["vector-search", "qdrant", "edge", "robotics", "mobileclip", "multiv
 # Core runtime. Deliberately light so the pipeline and tests run anywhere,
 # including CI, without pulling multi-hundred-MB model weights.
 dependencies = [
-    "qdrant-client>=1.12",
+    "qdrant-edge-py>=0.7",
     "numpy>=1.24",
     "pillow>=10.0",
 ]

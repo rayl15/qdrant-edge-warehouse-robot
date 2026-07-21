@@ -26,3 +26,5 @@ jobs:
         run: pytest
       - name: Smoke-test the demo
         run: python scripts/demo.py
+      - name: Smoke-test the benchmark
+        run: python scripts/benchmark.py --skus 200 --queries 50

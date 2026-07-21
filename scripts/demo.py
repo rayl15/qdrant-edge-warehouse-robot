@@ -21,7 +21,7 @@ from PIL import Image
 from mixed_bin.config import Settings
 from mixed_bin.detector import Crop
 from mixed_bin.embeddings import FakeEmbedder
-from mixed_bin.index import LocalQdrantIndex, SkuRecord
+from mixed_bin.index import EdgeShardIndex, SkuRecord
 from mixed_bin.search import MixedBinPicker
 
 CATALOG = [
@@ -56,30 +56,38 @@ def main() -> None:
         for sku, title in CATALOG
     ]
 
+    # Close the shard before the temp dir goes away: Edge flushes to disk when
+    # the shard is dropped, and flushing into a deleted directory panics.
     with tempfile.TemporaryDirectory() as tmp:
-        index = LocalQdrantIndex(f"{tmp}/shard", "demo_catalog", dim=64)
-        index.build(records)
-        print(f"Indexed {len(records)} SKUs as multivector points.\n")
+        with EdgeShardIndex(f"{tmp}/shard", dim=64) as index:
+            index.build(records)
+            print(f"Indexed {index.count()} SKUs as multivector points in a Qdrant Edge shard.\n")
 
-        # A messy tote: three garments, each seen from an unfamiliar angle (view 7/8/9).
-        bin_items = [
-            ("SKU-1003", 7, (20, 15, 180, 175)),
-            ("SKU-1001", 8, (200, 40, 360, 200)),
-            ("SKU-1004", 9, (60, 210, 220, 370)),
-        ]
-        picker = MixedBinPicker(
-            LabelledDetector(bin_items), emb, index, Settings(min_confidence=0.3)
-        )
+            # A messy tote: three garments, each seen from an unfamiliar angle (view 7/8/9).
+            bin_items = [
+                ("SKU-1003", 7, (20, 15, 180, 175)),
+                ("SKU-1001", 8, (200, 40, 360, 200)),
+                ("SKU-1004", 9, (60, 210, 220, 370)),
+            ]
+            picker = MixedBinPicker(
+                LabelledDetector(bin_items), emb, index, Settings(min_confidence=0.3)
+            )
 
-        start = time.perf_counter()
-        targets = picker.plan_picks(Image.new("RGB", (400, 400)))
-        elapsed_ms = (time.perf_counter() - start) * 1000
+            start = time.perf_counter()
+            targets = picker.plan_picks(Image.new("RGB", (400, 400)))
+            elapsed_ms = (time.perf_counter() - start) * 1000
 
-        print("Pick plan (most confident first):")
-        for t in targets:
-            flag = "" if t.confident else "  [LOW CONF -> human]"
-            print(f"  {t.sku:10} {t.title:20} score={t.confidence:.3f} grip={t.grip_point}{flag}")
-        print(f"\nParsed + searched {len(targets)} garments in {elapsed_ms:.1f} ms (in-process).")
+            print("Pick plan (most confident first):")
+            for t in targets:
+                flag = "" if t.confident else "  [LOW CONF -> human]"
+                print(
+                    f"  {t.sku:10} {t.title:20} score={t.confidence:.3f} "
+                    f"grip={t.grip_point}{flag}"
+                )
+            print(
+                f"\nParsed + searched {len(targets)} garments in {elapsed_ms:.1f} ms "
+                f"(in-process, no network)."
+            )
 
 
 if __name__ == "__main__":

@@ -20,9 +20,13 @@ class Settings:
     # Orin-class headroom.
     model_name: str = "hf-hub:timm/MobileCLIP2-S0-OpenCLIP"
 
-    # Where the in-process Qdrant shard is persisted on the robot's local disk.
+    # Where the Qdrant Edge shard is persisted on the robot's local disk. An
+    # Edge shard is a directory, so this is a path rather than a server URL.
     shard_path: str = "storage/mixed_bin"
-    collection: str = "warehouse_catalog"
+
+    # Name of the dense vector inside the shard. One named vector is enough
+    # here; you would add more if you indexed, say, a text description too.
+    vector_name: str = "vision"
 
     # How many SKU candidates to retrieve for each detected garment crop.
     top_k: int = 5
@@ -36,7 +40,7 @@ class Settings:
         return Settings(
             model_name=os.environ.get("MIXED_BIN_MODEL", Settings.model_name),
             shard_path=os.environ.get("MIXED_BIN_SHARD", Settings.shard_path),
-            collection=os.environ.get("MIXED_BIN_COLLECTION", Settings.collection),
+            vector_name=os.environ.get("MIXED_BIN_VECTOR", Settings.vector_name),
             top_k=int(os.environ.get("MIXED_BIN_TOP_K", Settings.top_k)),
             min_confidence=float(
                 os.environ.get("MIXED_BIN_MIN_CONFIDENCE", Settings.min_confidence)

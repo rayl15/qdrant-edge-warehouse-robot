@@ -1,5 +1,6 @@
 # Core runtime (enough to run the pipeline with the fake embedder + tests).
-qdrant-client>=1.12
+# Qdrant Edge is the embedded engine that runs on the robot itself.
+qdrant-edge-py>=0.7
 numpy>=1.24
 pillow>=10.0
 

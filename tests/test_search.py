@@ -2,7 +2,7 @@ from PIL import Image
 
 from mixed_bin.config import Settings
 from mixed_bin.detector import Crop, SimpleBinDetector
-from mixed_bin.index import LocalQdrantIndex
+from mixed_bin.index import EdgeShardIndex
 from mixed_bin.search import MixedBinPicker
 
 
@@ -23,7 +23,7 @@ class LabelledDetector:
 
 
 def test_picker_matches_each_garment(tmp_path, embedder, catalog):
-    index = LocalQdrantIndex(str(tmp_path / "shard"), "cat", dim=64)
+    index = EdgeShardIndex((tmp_path / "shard"), dim=64)
     index.build(catalog)
 
     detector = LabelledDetector([
@@ -42,7 +42,7 @@ def test_picker_matches_each_garment(tmp_path, embedder, catalog):
 
 
 def test_unknown_item_is_low_confidence(tmp_path, embedder, catalog):
-    index = LocalQdrantIndex(str(tmp_path / "shard"), "cat", dim=64)
+    index = EdgeShardIndex((tmp_path / "shard"), dim=64)
     index.build(catalog)
 
     detector = LabelledDetector([("NOT-IN-CATALOG", 1, (0, 0, 10, 10))])

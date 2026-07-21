@@ -21,7 +21,7 @@ from PIL import Image
 
 from mixed_bin.config import Settings
 from mixed_bin.embeddings import MobileClipEmbedder
-from mixed_bin.index import LocalQdrantIndex, SkuRecord
+from mixed_bin.index import EdgeShardIndex, SkuRecord
 
 CATALOG_DIR = Path(__file__).resolve().parent.parent / "data" / "catalog"
 IMG_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp"}
@@ -49,7 +49,7 @@ def main() -> None:
         records.append(SkuRecord(sku=sku, title=slug.replace("-", " "), view_vectors=mat))
         queries.append((sku, held_out, embedder.embed_image(Image.open(held_out))))
 
-    index = LocalQdrantIndex(settings.shard_path, settings.collection, embedder.dim)
+    index = EdgeShardIndex(settings.shard_path, embedder.dim, settings.vector_name)
     index.build(records)
     print(f"Indexed {len(records)} products as multivector points "
           f"({sum(len(load_views(d)) - 1 for d in sku_dirs if len(load_views(d)) >= 3)} catalog views).\n")

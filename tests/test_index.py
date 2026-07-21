@@ -1,6 +1,6 @@
 import numpy as np
 
-from mixed_bin.index import LocalQdrantIndex, SkuRecord
+from mixed_bin.index import EdgeShardIndex, SkuRecord
 
 
 def _unit(v):
@@ -8,7 +8,7 @@ def _unit(v):
 
 
 def test_multivector_search_returns_correct_sku(tmp_path, embedder, catalog):
-    index = LocalQdrantIndex(str(tmp_path / "shard"), "test_catalog", dim=64)
+    index = EdgeShardIndex((tmp_path / "shard"), dim=64)
     index.build(catalog)
 
     # An unseen "view" of SKU-1002 should still retrieve SKU-1002 first.
@@ -42,12 +42,12 @@ def test_multivector_beats_single_view_for_deformed_item(tmp_path):
     e = _unit(e - (e @ query) * query)              # orthogonal to the query
     front_b = _unit(0.6 * query + np.sqrt(1 - 0.6**2) * e)
 
-    single = LocalQdrantIndex(str(tmp_path / "single"), "single", dim=dim)
+    single = EdgeShardIndex((tmp_path / "single"), dim=dim)
     single.build([
         SkuRecord("SKU-A", "item a", np.stack([front_a])),
         SkuRecord("SKU-B", "item b", np.stack([front_b])),
     ])
-    multi = LocalQdrantIndex(str(tmp_path / "multi"), "multi", dim=dim)
+    multi = EdgeShardIndex((tmp_path / "multi"), dim=dim)
     multi.build([
         SkuRecord("SKU-A", "item a", np.stack([front_a, crumpled_a])),
         SkuRecord("SKU-B", "item b", np.stack([front_b])),
