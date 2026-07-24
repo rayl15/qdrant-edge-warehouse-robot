@@ -1,0 +1,402 @@
+[
+ {
+  "sku": "TEE-01-ARMY-GREEN",
+  "color": "army-green",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Army Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596646",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-01-ARMY-GREEN",
+  "color": "army-green",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Army Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626455469",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-02-BANANA",
+  "color": "banana",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Banana/Yellow",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596464",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-02-BANANA",
+  "color": "banana",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Banana",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626437867",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-03-BLACK",
+  "color": "black",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Black",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596502",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-03-BLACK",
+  "color": "black",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Black",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627226798",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-04-BLUE-JEAN",
+  "color": "blue-jean",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Blue Jean",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778831",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-04-BLUE-JEAN",
+  "color": "blue-jean",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Blue Jean",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626475771",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-05-BROWN",
+  "color": "brown",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Brown",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778861",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-05-BROWN",
+  "color": "brown",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Brown",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626455559",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-06-DARK-GREY",
+  "color": "dark-grey",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Dark Grey",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778671",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-06-DARK-GREY",
+  "color": "dark-grey",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Dark Grey",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627226698",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-07-FUSCHIA",
+  "color": "fuschia",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Fuschia",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627597096",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-07-FUSCHIA",
+  "color": "fuschia",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Fuschia",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626475253",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-08-GOLD",
+  "color": "gold",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Gold",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778705",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-08-GOLD",
+  "color": "gold",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Gold",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626437963",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-09-HEATHER-GREY",
+  "color": "heather-grey",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Heather Grey",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778739",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-09-HEATHER-GREY",
+  "color": "heather-grey",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Heather Grey",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627226576",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-10-KELLY-GREEN",
+  "color": "kelly-green",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Kelly Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778539",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-10-KELLY-GREEN",
+  "color": "kelly-green",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Kelly Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627256960",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-11-LIGHT-BLUE",
+  "color": "light-blue",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Light Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596260",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-11-LIGHT-BLUE",
+  "color": "light-blue",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Light Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626475617",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-12-LIGHT-PURPLE",
+  "color": "light-purple",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Light Purple",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626778633",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-12-LIGHT-PURPLE",
+  "color": "light-purple",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Light Purple",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627274324",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-13-MAROON",
+  "color": "maroon",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Maroon",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596922",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-13-MAROON",
+  "color": "maroon",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Maroon",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626455649",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-14-NATURAL",
+  "color": "natural",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Natural/Cream",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596602",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-14-NATURAL",
+  "color": "natural",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Natural/Cream",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627233778",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-15-NAVY-BLUE",
+  "color": "navy-blue",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Navy Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779225",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-15-NAVY-BLUE",
+  "color": "navy-blue",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Navy Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627304220",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-16-OLIVE-GREEN",
+  "color": "olive-green",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Olive Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596992",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-16-OLIVE-GREEN",
+  "color": "olive-green",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Olive Green",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627256842",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-17-ORANGE",
+  "color": "orange",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Orange",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596696",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-17-ORANGE",
+  "color": "orange",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Orange",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627256754",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-18-PINK",
+  "color": "pink",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Pink",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779021",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-18-PINK",
+  "color": "pink",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Pink",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627274146",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-19-PURPLE",
+  "color": "purple",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Purple",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779281",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-19-PURPLE",
+  "color": "purple",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Purple",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626475369",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-20-RED",
+  "color": "red",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Red",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779317",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-20-RED",
+  "color": "red",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Red",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626475457",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-21-ROYAL-BLUE",
+  "color": "royal-blue",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Royal Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779063",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-21-ROYAL-BLUE",
+  "color": "royal-blue",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Royal Blue",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626486243",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-22-SAND",
+  "color": "sand",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Sand",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626779099",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-22-SAND",
+  "color": "sand",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Sand",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2626408683",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-23-SILVER",
+  "color": "silver",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Silver",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596852",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-23-SILVER",
+  "color": "silver",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Silver",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627226444",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-24-TURQUOISE",
+  "color": "turquoise",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- Turquoise",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627596890",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-24-TURQUOISE",
+  "color": "turquoise",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- Turquoise",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627303996",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-25-WHITE",
+  "color": "white",
+  "file": "wrinkled-back.jpg",
+  "title": "Wrinkled Back- White",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2627597142",
+  "license": "by-2.0"
+ },
+ {
+  "sku": "TEE-25-WHITE",
+  "color": "white",
+  "file": "wrinkled-front.jpg",
+  "title": "Wrinkled Front- White",
+  "flickr": "https://www.flickr.com/photos/68525400@N00/2625883027",
+  "license": "by-2.0"
+ }
+]

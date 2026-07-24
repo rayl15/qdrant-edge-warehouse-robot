@@ -74,14 +74,51 @@ Mean search time: 0.04 ms/query (in-process, exact).
 ```
 
 Note on the sample data: ABO's permissively-licensed multi-view listings are
-footwear and accessories, so the sample is shoes, bags, hats, watches and
-sunglasses rather than garments. The pipeline is identical for apparel, only the
-reference photos differ. Drop your own product folders into `data/catalog/` to
-use it on garments.
+footwear and accessories, so this catalog is shoes, bags, hats, watches and
+sunglasses. Since apparel is the whole point of the article, there is a second
+catalog of actual crumpled garments below.
 
 Default encoder is `MobileCLIP2-S0` (512-d, single-digit-ms image encode, the
 edge sweet spot). Override with `MIXED_BIN_MODEL`, and step up to
 `MobileCLIP2-L-14` (768-d) with Orin-class headroom.
+
+## Does it work on crumpled garments?
+
+That is the premise of the whole thing, so here it is on real crumpled apparel.
+`data/catalog_garments/` is 25 t-shirts, each photographed wrinkled from the
+front and the back (Flickr user ir0cko, CC BY 2.0, see `data/ATTRIBUTION.md`).
+The test is deliberately hard: index each shirt's wrinkled **front**, then query
+with its wrinkled **back**, which is never in the index, and try to pick the
+right shirt out of 25 near-identical tees.
+
+```bash
+pip install -e '.[clip]'
+python scripts/demo_crumpled.py --panel
+```
+
+![Crumpled-garment retrieval results](docs/images/crumpled-garment-results.png)
+
+```
+Indexed 25 wrinkled t-shirts as multivector points (25 reference views).
+Query = each shirt's held-out wrinkled-back (never indexed).
+  ...
+Top-1 accuracy on held-out crumpled backs: 16/25 = 64%
+Top-3 accuracy (deploy with top-k + a confidence floor): 23/25 = 92%
+Mean search time: 0.13 ms/query (Qdrant Edge, in-process).
+```
+
+Two honest things to read off that. Top-3 is 92%, which is the number that
+matters for a picking arm: it returns a short candidate list and a confidence
+floor routes the ambiguous ones to a human (see "confidence floor" in the
+article), rather than committing to a single guess. And every top-1 miss is a
+near-identical shade, blue-jean landing on navy, silver on heather-grey, fuchsia
+on pink. That is the single-view brittleness the article is about: one front
+view is not enough to separate 25 plain tees when they differ only in wrinkle
+pattern and hue. The fix is more reference views per SKU, which is exactly what
+the multivector index is for and what `tests/test_index.py` proves on the
+single-view-vs-multivector case. A permissive stock set with front and back per
+shirt only lets us index one view here; a real catalog would add folded and
+hanging shots and close most of that top-1 gap.
 
 ## Measured search latency
 
