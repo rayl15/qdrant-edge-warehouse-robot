@@ -114,11 +114,18 @@ article), rather than committing to a single guess. And every top-1 miss is a
 near-identical shade, blue-jean landing on navy, silver on heather-grey, fuchsia
 on pink. That is the single-view brittleness the article is about: one front
 view is not enough to separate 25 plain tees when they differ only in wrinkle
-pattern and hue. The fix is more reference views per SKU, which is exactly what
-the multivector index is for and what `tests/test_index.py` proves on the
-single-view-vs-multivector case. A permissive stock set with front and back per
-shirt only lets us index one view here; a real catalog would add folded and
-hanging shots and close most of that top-1 gap.
+pattern and hue.
+
+The fix is more reference views per SKU, which is the whole reason the index is
+multivector, and that is already demonstrated in this repo. The ABO demo above
+(`demo_real.py`) indexes three to four views per product and gets 9/9 on
+held-out shots. `tests/test_index.py` proves the same single-view-vs-multivector
+case directly. The garment demo here is single-view only because the
+permissively-licensed stock set gives just a front and a back per shirt, and the
+back is spent as the query. Add a third real reference view per shirt (a folded
+or crumpled shot) and this becomes a multivector retrieval that closes most of
+the top-1 gap. That is a swap of the reference photos, not a code change: point
+`data/catalog_garments/` at a catalog with more views per SKU and re-run.
 
 ## Measured search latency
 
