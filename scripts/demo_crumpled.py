@@ -77,12 +77,19 @@ def main() -> None:
         queries.append((code, label(sku_dir), query_path,
                         embedder.embed_image(Image.open(query_path))))
 
+    log: list[str] = []
+
+    def emit(line: str = "") -> None:
+        print(line)
+        log.append(line)
+
     with EdgeShardIndex(str(ROOT / "storage" / "garments"), dim=embedder.dim) as index:
         index.build(records)
         n_views = sum(r.view_vectors.shape[0] for r in records)
-        print(f"Indexed {index.count()} wrinkled t-shirts as multivector points "
-              f"({n_views} reference views).")
-        print(f"Query = each shirt's held-out {QUERY_VIEW} (never indexed).\n")
+        emit(f"Indexed {index.count()} wrinkled t-shirts as multivector points "
+             f"({n_views} reference views).")
+        emit(f"Query = each shirt's held-out {QUERY_VIEW} (never indexed).")
+        emit()
 
         correct, top3, total_ms, results = 0, 0, 0.0, []
         for code, lbl, qpath, qvec in queries:
@@ -97,19 +104,90 @@ def main() -> None:
             results.append((code, lbl, qpath, top, ok, hits))
             mark = "ok  " if ok else ("top3" if in_top3 else "MISS")
             note = "" if ok else f"  (got {top.title})"
-            print(f"  [{mark}] {lbl:14} -> {top.title:14} {top.score:.3f}{note}")
+            emit(f"  [{mark}] {lbl:14} -> {top.title:14} {top.score:.3f}{note}")
 
         n = len(queries)
-        print(f"\nTop-1 accuracy on held-out crumpled backs: {correct}/{n} = {correct / n:.0%}")
-        print(f"Top-3 accuracy (deploy with top-k + a confidence floor): {top3}/{n} = {top3 / n:.0%}")
-        print(f"Mean search time: {total_ms / n:.2f} ms/query (Qdrant Edge, in-process).")
+        emit()
+        emit(f"Top-1 accuracy on held-out crumpled backs: {correct}/{n} = {correct / n:.0%}")
+        emit(f"Top-3 accuracy (deploy with top-k + a confidence floor): {top3}/{n} = {top3 / n:.0%}")
+        emit(f"Mean search time: {total_ms / n:.2f} ms/query (Qdrant Edge, in-process).")
         print("\nEvery top-1 miss is a near-identical shade (e.g. royal vs navy, silver vs")
         print("heather-grey): one front view per shirt is not enough to separate 25 plain")
         print("tees. That is the single-view brittleness the article is about. The remedy is")
         print("more reference views per SKU (see the multivector unit test in tests/).")
 
         if args.panel:
+            write_input_grid(results)
+            write_terminal(log)
             write_panel(results, correct, n)
+
+
+def _images_dir():
+    d = ROOT / "docs" / "images"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def write_input_grid(results) -> None:
+    """The INPUT: the crumpled garment shots fed to the pipeline as queries."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    shown = results[:15]
+    cols = 5
+    rows = (len(shown) + cols - 1) // cols
+    fig, axes = plt.subplots(rows, cols, figsize=(cols * 2.1, rows * 2.5))
+    fig.suptitle("INPUT: crumpled garments the camera sees (held-out query shots)",
+                 fontsize=13, y=1.0)
+    axes = np.atleast_2d(axes)
+    for i in range(rows * cols):
+        r, c = divmod(i, cols)
+        ax = axes[r][c]
+        ax.axis("off")
+        if i < len(shown):
+            _, lbl, qpath, _, _, _ = shown[i]
+            ax.imshow(Image.open(qpath).convert("RGB"))
+            ax.set_title(lbl, fontsize=8)
+    out = _images_dir() / "crumpled-input.png"
+    fig.tight_layout(rect=[0, 0, 1, 0.96])
+    fig.savefig(out, dpi=130, bbox_inches="tight")
+    plt.close(fig)
+    print(f"\nWrote {out.relative_to(ROOT)}")
+
+
+def write_terminal(log) -> None:
+    """The OUTPUT: a terminal screenshot of the actual run."""
+    from PIL import ImageDraw, ImageFont
+    from matplotlib import font_manager
+
+    lines = ["$ python scripts/demo_crumpled.py", ""] + log
+    mono = font_manager.findfont(font_manager.FontProperties(family="monospace"))
+    size = 22
+    font = ImageFont.truetype(mono, size)
+    pad, lh = 28, size + 8
+    w = 1180
+    h = pad * 2 + lh * len(lines)
+    img = Image.new("RGB", (w, h), (13, 17, 23))  # GitHub-dark terminal
+    d = ImageDraw.Draw(img)
+    for i, line in enumerate(lines):
+        y = pad + i * lh
+        if line.startswith("$"):
+            color = (88, 166, 255)   # command, blue
+        elif "[ok" in line:
+            color = (63, 185, 80)    # hit, green
+        elif "[MISS" in line:
+            color = (248, 81, 73)    # miss, red
+        elif "[top3" in line:
+            color = (210, 168, 60)   # in top-3, amber
+        elif "accuracy" in line or "search time" in line.lower():
+            color = (230, 237, 243)  # summary, bright
+        else:
+            color = (139, 148, 158)  # muted
+        d.text((pad, y), line, font=font, fill=color)
+    out = _images_dir() / "crumpled-output-terminal.png"
+    img.save(out)
+    print(f"Wrote {out.relative_to(ROOT)}")
 
 
 def write_panel(results, correct, n) -> None:

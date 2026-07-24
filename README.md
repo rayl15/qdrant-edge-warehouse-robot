@@ -96,16 +96,23 @@ pip install -e '.[clip]'
 python scripts/demo_crumpled.py --panel
 ```
 
-![Crumpled-garment retrieval results](docs/images/crumpled-garment-results.png)
+### Input: the crumpled garments fed in
 
-```
-Indexed 25 wrinkled t-shirts as multivector points (25 reference views).
-Query = each shirt's held-out wrinkled-back (never indexed).
-  ...
-Top-1 accuracy on held-out crumpled backs: 16/25 = 64%
-Top-3 accuracy (deploy with top-k + a confidence floor): 23/25 = 92%
-Mean search time: 0.13 ms/query (Qdrant Edge, in-process).
-```
+Each query is a wrinkled, deformed shot the model has never indexed. This is
+what the robot's camera would see looking into the bin.
+
+![Input: crumpled garment query shots](docs/images/crumpled-input.png)
+
+### Output: what the pipeline returns
+
+The run itself, top-1 and top-3 accuracy and per-query timing:
+
+![Output: demo_crumpled.py terminal run](docs/images/crumpled-output-terminal.png)
+
+And the same result read visually, each crumpled input beside the shirt it
+retrieved (green is a correct match, red is a miss):
+
+![Output: each crumpled query beside its retrieved match](docs/images/crumpled-garment-results.png)
 
 Two honest things to read off that. Top-3 is 92%, which is the number that
 matters for a picking arm: it returns a short candidate list and a confidence
